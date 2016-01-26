@@ -1,0 +1,4 @@
+- name: Ensure pound is installed
+  yum: name=Pound state=installed
+  notify:
+    - restart pound

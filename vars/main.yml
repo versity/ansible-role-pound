@@ -1,0 +1,23 @@
+---
+# The following configuration would listen on 127.0.0.1:8080
+# and balance that load out to 192.168.1.[10-12]:[8080-8083].
+# In other words, 12 host/port combinations.  Modify for your
+# environment.
+#
+# Edit templates/pound.cfg.j2 for additional customization.
+
+pound_targets:
+    - 192.168.1.10
+    - 192.168.1.11
+    - 192.168.1.12
+
+pound_ports:
+    - 8080
+    - 8081
+    - 8082
+    - 8083
+
+pound_listen_addr: 127.0.0.1
+pound_listen_port: 8080
+
+poundctl_path: /var/run/pound

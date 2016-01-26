@@ -1,0 +1,32 @@
+User                    "pound"
+Group                   "pound"
+
+## Logging: (goes to syslog by default)
+
+##           1              normal
+##           2              extended
+##           3              Apache-style (common log format)
+LogLevel              2
+
+## check backend every X secs:
+Alive                      30
+
+# poundctl control socket
+Control "{{ poundctl_path }}/poundctl.socket"
+
+ListenHTTP
+                Address {{ pound_listen_addr }}
+                Port    {{ pound_listen_port }}
+## allow PUT and DELETE also (by default only GET, POST and HEAD)
+                xHTTP                   1
+                Service
+{% for ip in pound_targets %}
+{% for port in pound_ports %}
+                                BackEnd
+                                                Address    {{ ip }}
+                                                Port       {{ port }}
+                                End
+{% endfor %}
+{% endfor %}
+                End
+End

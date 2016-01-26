@@ -1,0 +1,5 @@
+---
+- name: Ensure pound is installed
+  apt: name=pound state=installed
+  notify:
+    - restart pound

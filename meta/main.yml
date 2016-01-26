@@ -1,0 +1,21 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: versity
+  description: Pound installation for Linux.
+  company: "Versity Software Inc."
+  license: "license (BSD, MIT)"
+  min_ansible_version: 1.4
+  platforms:
+  - name: EL
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
+  categories:
+    - system

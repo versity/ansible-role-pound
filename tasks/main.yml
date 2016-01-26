@@ -1,0 +1,23 @@
+---
+- include: setup-Debian.yml
+  when: ansible_os_family == "Debian"
+  notify:
+    - restart pound
+
+- include: setup-RedHat.yml
+  when: ansible_os_family == "RedHat"
+  notify:
+    - restart pound
+
+- name: Ensure poundctl path exists
+  file: path={{ poundctl_path }} state=directory mode=0755
+
+- name: Copy out pound.cfg
+  template:
+    src=pound.cfg.j2
+    dest=/etc/pound.cfg
+    owner=root
+    group=root
+    mode=0644
+  notify:
+    - restart pound
