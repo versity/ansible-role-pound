@@ -21,3 +21,7 @@
     mode=0644
   notify:
     - restart pound
+
+- name: Enable pound service
+  service: name=pound state=started enabled=yes
+  when: ansible_os_family == "RedHat"
